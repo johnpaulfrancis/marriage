@@ -1,0 +1,898 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>John Paul Francis & Ayana Suresh — Wedding</title>
+<meta name="description" content="Join us as John Paul Francis and Ayana Suresh are united in the Sacrament of Holy Matrimony — Saturday, August 29, 2026.">
+
+<!-- Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500&family=Cormorant+Garamond:wght@400;500;600&family=Parisienne&display=swap" rel="stylesheet">
+
+<!-- QR Code generator (client-side, no backend needed) -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+
+<style>
+  :root{
+    --ivory: #FBFAF6;
+    --mist: #EEF0F7;
+    --powder: #B7C4DE;
+    --powder-soft: #D4DCEC;
+    --dusty: #7C8CAE;
+    --ink: #34394A;
+    --ink-soft: #6A7088;
+    --gold: #BC9A5B;
+    --gold-light: #E3D2A8;
+    --gold-deep: #9C7C3F;
+    --hairline: rgba(124,140,174,0.35);
+
+    --font-display: 'Playfair Display', serif;
+    --font-script: 'Parisienne', cursive;
+    --font-body: 'Cormorant Garamond', serif;
+
+    --max-w: 720px;
+    --banner-h: 64px;
+  }
+
+  *{ box-sizing: border-box; }
+  html{ scroll-behavior: smooth; }
+
+  body{
+    margin:0;
+    background: var(--ivory);
+    color: var(--ink);
+    font-family: var(--font-body);
+    font-size: 18px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+    padding-top: var(--banner-h);
+  }
+
+  img, svg{ display:block; max-width:100%; }
+  a{ color: inherit; }
+
+  /* ---------- Sticky countdown banner ---------- */
+  #countdown-banner{
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 50;
+    height: var(--banner-h);
+    background: linear-gradient(180deg, #4F5C7A, #5E6D90);
+    color: var(--ivory);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap: clamp(0.6rem, 3vw, 1.6rem);
+    padding: 0 1rem;
+    box-shadow: 0 2px 10px rgba(52,57,74,0.25);
+  }
+  #countdown-banner .cd-label{
+    font-family: var(--font-script);
+    font-size: clamp(0.9rem, 2.6vw, 1.2rem);
+    color: var(--gold-light);
+    white-space: nowrap;
+  }
+  #countdown-banner .cd-units{ display:flex; align-items: baseline; gap: clamp(0.45rem, 2.2vw, 1rem); }
+  #countdown-banner .cd-unit{ display:flex; flex-direction: column; align-items:center; line-height: 1; }
+  #countdown-banner .cd-num{
+    font-family: var(--font-display); font-weight: 700;
+    font-size: clamp(1rem, 3.2vw, 1.4rem); font-variant-numeric: tabular-nums;
+  }
+  #countdown-banner .cd-unit-label{
+    margin-top: 2px; font-size: 0.55rem; letter-spacing: 0.14em;
+    text-transform: uppercase; color: rgba(251,250,246,0.7);
+  }
+  #countdown-banner .cd-sep{ color: var(--gold-light); font-size: clamp(0.85rem, 2.4vw, 1.1rem); transform: translateY(-1px); }
+  #countdown-banner.is-today{ background: linear-gradient(180deg, var(--gold), var(--gold-deep)); }
+  @media (max-width: 480px){
+    #countdown-banner{ gap: 0.5rem; }
+    #countdown-banner .cd-label{ display:none; }
+  }
+
+  .eyebrow{
+    font-family: var(--font-body); text-transform: uppercase; letter-spacing: 0.32em;
+    font-size: 0.76rem; color: var(--dusty); font-weight: 600;
+  }
+  .script{ font-family: var(--font-script); color: var(--ink); font-weight: 400; }
+
+  /* ---------- Ambient floating petals ---------- */
+  #petal-field{ position: fixed; inset: 0; pointer-events: none; z-index: 0; overflow: hidden; }
+  .petal{
+    position: absolute; top: -8%; opacity: 0.5; will-change: transform;
+    animation-name: drift; animation-timing-function: linear; animation-iteration-count: infinite;
+  }
+  @keyframes drift{
+    0%   { transform: translate3d(0, -10vh, 0) rotate(0deg); }
+    100% { transform: translate3d(0, 112vh, 0) rotate(360deg); }
+  }
+  @media (prefers-reduced-motion: reduce){
+    .petal{ animation: none; display:none; }
+    html{ scroll-behavior:auto; }
+  }
+
+  /* ---------- Shell / sections ---------- */
+  .page{ position: relative; z-index: 1; }
+  section{ position: relative; padding: 4.4rem 1.25rem; }
+  .alt-bg{ background: var(--mist); }
+  .inner{ max-width: var(--max-w); margin: 0 auto; text-align: center; }
+
+  .divider-flourish{ width: 130px; height: 18px; margin: 1.3rem auto; }
+  .divider-flourish path{
+    fill:none; stroke: var(--gold); stroke-width: 1.2; stroke-linecap: round;
+    stroke-dasharray: 220; stroke-dashoffset: 220; transition: stroke-dashoffset 1.4s ease;
+  }
+  .reveal.in-view .divider-flourish path{ stroke-dashoffset: 0; }
+
+  /* ---------- Corner florals ---------- */
+  .corner{ position: absolute; width: clamp(90px, 18vw, 170px); opacity: 0.9; z-index: 0; pointer-events:none; }
+  .corner.tl{ top: -6px; left: -6px; }
+  .corner.tr{ top: -6px; right: -6px; transform: scaleX(-1); }
+  .corner.bl{ bottom: -6px; left: -6px; transform: scaleY(-1); }
+  .corner.br{ bottom: -6px; right: -6px; transform: scale(-1,-1); }
+
+  /* ============ HERO — framed invitation card ============ */
+  .hero{
+    display:flex; align-items:center; justify-content:center;
+    padding: clamp(1.6rem, 5vw, 2.6rem) 1rem clamp(2.2rem, 5vw, 3rem);
+  }
+  .invite-card{
+    position: relative;
+    width: 100%; max-width: 600px;
+    margin: 0 auto;
+    padding: clamp(2.4rem, 7vw, 3.4rem) clamp(1.3rem, 6vw, 2.6rem) clamp(2.2rem, 6vw, 3rem);
+    text-align: center;
+    background: linear-gradient(180deg, rgba(255,255,255,0.6), rgba(255,255,255,0.18));
+    border: 1px solid var(--hairline);
+  }
+  .invite-card::before{
+    content:''; position:absolute; inset: 9px;
+    border: 1px solid var(--gold-light);
+    pointer-events:none;
+  }
+  .invite-card .inner{ position:relative; z-index:2; }
+
+  .hero-script{ font-size: clamp(1.5rem, 4vw, 2rem); margin: 0.4rem 0 1.3rem; }
+
+  .names{ display:flex; flex-direction: column; align-items: center; gap: 0.1rem; }
+  .name-line{
+    font-family: var(--font-display); font-weight: 600;
+    font-size: clamp(2rem, 7vw, 3.3rem); line-height: 1.05;
+    letter-spacing: 0.01em; text-transform: uppercase;
+  }
+  .surname{
+    font-family: var(--font-display); font-style: italic; font-weight: 500;
+    font-size: clamp(1rem, 2.6vw, 1.3rem); color: var(--ink-soft);
+    letter-spacing: 0.18em; text-transform: uppercase; margin-top: -0.2rem;
+  }
+
+  .rings-divider{ width: 64px; height: 64px; margin: 0.6rem auto; }
+  .rings-divider circle{ fill:none; stroke: var(--gold); stroke-width: 2.2; }
+  .rings-divider .ring-spark{ fill: var(--gold-light); }
+
+  .hero-sub{ margin-top: 1.6rem; font-size: 1rem; color: var(--ink-soft); letter-spacing: 0.03em; }
+
+  .date-pill{
+    display:inline-flex; align-items:center; gap: 0.6rem; margin-top: 1.4rem;
+    padding: 0.6rem 1.4rem; border: 1px solid var(--hairline); border-radius: 999px;
+    font-family: var(--font-body); letter-spacing: 0.1em; text-transform: uppercase;
+    font-size: 0.82rem; font-weight: 600; color: var(--dusty);
+    background: rgba(255,255,255,0.55);
+  }
+  .date-pill b{ color: var(--ink); font-weight:700; }
+
+  .hero-cta-row{ display:flex; flex-wrap:wrap; justify-content:center; gap: 0.6rem; margin-top: 1.5rem; }
+
+  .scroll-cue{
+    margin-top: 1.6rem; font-size: 0.66rem; letter-spacing: 0.28em; text-transform: uppercase;
+    color: var(--ink-soft); opacity: 0.65; animation: bob 2.6s ease-in-out infinite;
+  }
+  @keyframes bob{ 0%,100%{ transform: translateY(0); } 50%{ transform: translateY(6px); } }
+
+  /* ---------- Reveal-on-scroll ---------- */
+  .reveal{ opacity: 0; transform: translateY(22px); transition: opacity 0.9s ease, transform 0.9s ease; }
+  .reveal.in-view{ opacity: 1; transform: translateY(0); }
+
+  /* ============ PORTRAIT + PARENTS ============ */
+  .portrait-section .inner{ max-width: 640px; }
+
+  .portrait-frame{
+    position: relative;
+    width: clamp(220px, 50vw, 280px);
+    height: clamp(280px, 64vw, 360px);
+    margin: 0 auto 2rem;
+    border-radius: 140px 140px 12px 12px;
+    overflow: hidden;
+    border: 1px solid var(--hairline);
+    box-shadow: 0 18px 40px -18px rgba(52,57,74,0.35);
+    background:
+      radial-gradient(circle at 30% 25%, #D4DCEC 0%, transparent 55%),
+      radial-gradient(circle at 75% 70%, #B7C4DE 0%, transparent 60%),
+      radial-gradient(circle at 50% 100%, #E3D2A8 0%, transparent 50%),
+      var(--ivory);
+  }
+  .portrait-frame img{
+    position:absolute; inset:0; width:100%; height:100%; object-fit: cover;
+    display:none; /* shown automatically only if the image loads successfully */
+  }
+  .portrait-fallback{
+    position:absolute; inset:0; display:flex; flex-direction:column;
+    align-items:center; justify-content:center; gap: 0.7rem; padding: 1.5rem;
+  }
+  .portrait-fallback .rings-divider{ width: 56px; height: 56px; margin:0; }
+  .portrait-fallback .monogram-small{
+    font-family: var(--font-display); font-size: 1.6rem; letter-spacing: 0.18em; color: var(--dusty);
+  }
+  .portrait-fallback .hint{
+    font-size: 0.72rem; letter-spacing: 0.1em; text-transform: uppercase;
+    color: var(--ink-soft); opacity: 0.6; max-width: 160px; line-height: 1.5;
+  }
+
+  .parents{
+    display:grid; grid-template-columns: 1fr; gap: 1.6rem; margin-top: 0.5rem;
+    text-align:center;
+  }
+  @media (min-width: 560px){ .parents{ grid-template-columns: 1fr 1fr; } }
+  .parent-block .who{
+    font-size: 0.74rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--gold);
+    font-weight: 700; margin-bottom: 0.4rem;
+  }
+  .parent-block .names-line{
+    font-family: var(--font-display); font-size: 1.15rem; font-style: italic; color: var(--ink);
+  }
+
+  /* ============ Heading pattern ============ */
+  .section-title{
+    font-family: var(--font-display); font-weight: 600;
+    font-size: clamp(1.8rem, 4vw, 2.4rem); margin: 0.3rem 0 0;
+  }
+
+  /* ============ VERSE ============ */
+  .verse blockquote{
+    margin: 1.4rem auto 0.8rem; max-width: 560px; font-family: var(--font-display);
+    font-style: italic; font-weight: 500; font-size: clamp(1.2rem, 3vw, 1.6rem);
+    line-height: 1.5; color: var(--ink);
+  }
+  .verse cite{
+    display:block; margin-top: 1rem; font-style: normal; font-family: var(--font-body);
+    letter-spacing: 0.18em; text-transform: uppercase; font-size: 0.78rem; color: var(--dusty);
+  }
+
+  /* ============ STORY FLOW ============ */
+  .story-line{
+    position: relative;
+    margin-top: 3rem;
+    display:flex; flex-direction: column; gap: 2.6rem;
+    text-align:left;
+  }
+  .story-line::before{
+    content:''; position:absolute; left: 23px; top: 6px; bottom: 6px; width: 1px;
+    background: linear-gradient(to bottom, transparent, var(--gold) 10%, var(--gold) 90%, transparent);
+  }
+  .story-item{ display:flex; gap: 1.4rem; align-items:flex-start; position:relative; }
+  .story-icon{
+    flex: none; width: 48px; height: 48px; border-radius: 50%;
+    background: var(--ivory); border: 1px solid var(--gold-light);
+    display:flex; align-items:center; justify-content:center; z-index:1;
+  }
+  .alt-bg .story-icon{ background: #fff; }
+  .story-icon svg{ width: 22px; height: 22px; stroke: var(--gold-deep); fill:none; stroke-width:1.5; }
+  .story-text .story-kicker{
+    font-size: 0.72rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--dusty); font-weight:700;
+  }
+  .story-text h3{
+    font-family: var(--font-display); font-weight:600; font-size: 1.3rem; margin: 0.3rem 0 0.35rem;
+  }
+  .story-text p{ margin:0; color: var(--ink-soft); font-size: 1rem; }
+  .story-text .editme{ font-style: italic; opacity: 0.85; }
+
+  /* ============ SCHEDULE ============ */
+  .schedule-list{ margin-top: 3rem; display:flex; flex-direction:column; gap: 1.3rem; text-align:left; }
+  .schedule-row{
+    display:grid; grid-template-columns: 92px 40px 1fr; align-items:flex-start; gap: 0.9rem;
+    padding-bottom: 1.3rem; border-bottom: 1px solid var(--hairline);
+  }
+  .schedule-row:last-child{ border-bottom:none; padding-bottom:0; }
+  .schedule-time{
+    font-family: var(--font-display); font-weight:600; font-size: 1.02rem; color: var(--ink);
+    white-space: nowrap;
+  }
+  .schedule-icon{
+    width: 36px; height: 36px; border-radius: 50%; background: var(--mist);
+    display:flex; align-items:center; justify-content:center;
+  }
+  .alt-bg .schedule-icon{ background: #fff; }
+  .schedule-icon svg{ width: 18px; height: 18px; stroke: var(--dusty); fill:none; stroke-width:1.6; }
+  .schedule-title{ font-weight: 700; font-size: 1.05rem; }
+  .schedule-desc{ color: var(--ink-soft); font-size: 0.95rem; margin-top: 0.15rem; }
+
+  /* ============ Event cards ============ */
+  .events{ display: grid; grid-template-columns: 1fr; gap: 1.8rem; margin-top: 3rem; text-align:left; }
+  @media (min-width: 760px){ .events{ grid-template-columns: repeat(3, 1fr); } }
+  .event-card{
+    background: var(--ivory); border: 1px solid var(--hairline); border-radius: 10px;
+    padding: 2rem 1.6rem; position: relative; box-shadow: 0 14px 30px -22px rgba(52,57,74,0.4);
+  }
+  .alt-bg .event-card{ background: #fff; }
+  .event-kicker{ font-size: 0.72rem; letter-spacing: 0.26em; text-transform: uppercase; color: var(--gold); font-weight: 700; }
+  .event-name{ font-family: var(--font-display); font-size: 1.4rem; font-weight: 600; margin: 0.5rem 0 0.2rem; }
+  .event-loc{ font-size: 1rem; color: var(--ink-soft); margin-bottom: 1rem; }
+  .event-time{
+    display:flex; align-items:center; gap: 0.55rem; font-weight: 600; letter-spacing: 0.02em;
+    color: var(--ink); margin-bottom: 1.3rem; font-size: 0.95rem;
+  }
+  .event-time svg{ width:17px; height:17px; flex:none; stroke: var(--dusty); }
+
+  /* ============ Buttons ============ */
+  .btn{
+    display:inline-flex; align-items:center; gap: 0.5rem;
+    padding: 0.7rem 1.35rem; border-radius: 8px; border: 1px solid var(--dusty);
+    color: var(--ink); text-decoration:none; font-family: var(--font-body); font-weight: 600;
+    letter-spacing: 0.02em; font-size: 0.94rem; background: #fff; cursor: pointer;
+    transition: transform 0.2s ease, box-shadow 0.25s ease, background 0.25s ease, color 0.25s ease;
+    box-shadow: 0 2px 6px -2px rgba(52,57,74,0.18);
+  }
+  .btn svg{ width: 16px; height:16px; flex:none; stroke: currentColor; fill:none; stroke-width: 1.7; }
+  .btn:hover{ transform: translateY(-2px); box-shadow: 0 10px 18px -10px rgba(52,57,74,0.4); }
+  .btn-primary{
+    border-color: var(--gold); color: #fff;
+    background: linear-gradient(180deg, var(--gold), var(--gold-deep));
+  }
+  .btn-primary:hover{ background: linear-gradient(180deg, var(--gold-deep), var(--gold-deep)); color:#fff; }
+  .btn-secondary:hover{ background: var(--dusty); color: #fff; }
+  .btn-row{ display:flex; flex-wrap: wrap; gap: 0.65rem; }
+
+  /* ---------- Map ---------- */
+  .map-wrap{
+    margin-top: 1rem; border-radius: 8px; overflow: hidden; border: 1px solid var(--hairline);
+    max-height: 0; transition: max-height 0.6s ease;
+  }
+  .map-wrap.open{ max-height: 480px; }
+  .map-wrap iframe{ width: 100%; height: 320px; border: 0; display:block; }
+
+  /* ============ QR card ============ */
+  .qr-card{
+    margin-top: 1.8rem; display:flex; flex-direction:column; align-items:center;
+    gap: 0.9rem; text-align:center;
+  }
+  .qr-card .event-kicker{ margin-bottom: 0.1rem; }
+  .qr-frame{ padding: 12px; background: #fff; border: 1px solid var(--hairline); border-radius: 8px; }
+  .qr-frame img, .qr-frame canvas{ display:block; }
+  .qr-caption{ font-size: 0.84rem; color: var(--ink-soft); max-width: 220px; }
+
+  /* ============ RSVP ============ */
+  .rsvp .inner{ max-width: 540px; }
+  .rsvp p{ color: var(--ink-soft); font-size: 1.02rem; }
+  .rsvp .btn{ margin-top: 1.2rem; padding: 0.9rem 2.1rem; font-size: 1rem; }
+
+  /* ============ FOOTER ============ */
+  footer{
+    position: relative;
+    padding: 4.4rem 1.5rem 2.6rem;
+    text-align:center;
+    color: var(--ivory);
+    background: linear-gradient(180deg, #4A5573, #343C53);
+    overflow: hidden;
+  }
+  .footer-church{
+    width: clamp(120px, 24vw, 170px);
+    margin: 0 auto 1.2rem;
+    opacity: 0.92;
+  }
+  .footer-church path, .footer-church line{ stroke: var(--gold-light); }
+  .footer-church .glow{ fill: rgba(227,210,168,0.12); }
+
+  .footer-rings{ width: 46px; height: 46px; margin: 0 auto 1.1rem; }
+  .footer-rings circle{ fill:none; stroke: var(--gold-light); stroke-width: 2; }
+
+  .monogram{ font-family: var(--font-display); font-size: 1.7rem; letter-spacing: 0.32em; color: var(--ivory); }
+  .footer-thanks{
+    margin-top: 1rem; font-size: 1.05rem; line-height: 1.7; color: rgba(251,250,246,0.85);
+    max-width: 420px; margin-left:auto; margin-right:auto;
+  }
+  .footer-note{ margin-top: 1rem; font-family: var(--font-script); font-size: 1.5rem; color: var(--gold-light); }
+  .footer-hashtag{
+    margin-top: 1.2rem; display:inline-block; padding: 0.4rem 1rem; border: 1px solid rgba(227,210,168,0.4);
+    border-radius: 999px; font-size: 0.78rem; letter-spacing: 0.14em; color: var(--gold-light);
+  }
+  .footer-divider{
+    width: 60px; height:1px; margin: 1.8rem auto; background: rgba(251,250,246,0.25);
+  }
+  .footer-date{
+    font-size: 0.74rem; letter-spacing: 0.25em; text-transform: uppercase; color: rgba(251,250,246,0.5);
+  }
+  .footer-credit{
+    margin-top: 0.5rem; font-size: 0.68rem; letter-spacing: 0.06em; color: rgba(251,250,246,0.35);
+  }
+</style>
+</head>
+<body>
+
+<div id="countdown-banner" aria-live="polite">
+  <span class="cd-label script">Counting down to forever</span>
+  <div class="cd-units">
+    <div class="cd-unit"><span class="cd-num" id="cd-days">00</span><span class="cd-unit-label">Days</span></div>
+    <span class="cd-sep">:</span>
+    <div class="cd-unit"><span class="cd-num" id="cd-hours">00</span><span class="cd-unit-label">Hrs</span></div>
+    <span class="cd-sep">:</span>
+    <div class="cd-unit"><span class="cd-num" id="cd-mins">00</span><span class="cd-unit-label">Min</span></div>
+    <span class="cd-sep">:</span>
+    <div class="cd-unit"><span class="cd-num" id="cd-secs">00</span><span class="cd-unit-label">Sec</span></div>
+  </div>
+</div>
+
+<div id="petal-field"></div>
+
+<div class="page">
+
+  <!-- ===================== HERO (framed invitation card) ===================== -->
+  <section class="hero">
+    <div class="invite-card">
+      <svg class="corner tl" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+        <g fill="none" stroke="#7C8CAE" stroke-width="1.4" stroke-linecap="round" opacity="0.55">
+          <path d="M5 8 C 40 5, 70 25, 80 60 C 88 88, 70 110, 95 130"/>
+          <path d="M20 18 C 45 22, 55 40, 50 58"/>
+        </g>
+        <g fill="#B7C4DE" opacity="0.85"><circle cx="14" cy="12" r="9"/><circle cx="28" cy="4" r="6"/></g>
+        <g fill="#D4DCEC" opacity="0.8"><ellipse cx="48" cy="56" rx="5" ry="9" transform="rotate(30 48 56)"/></g>
+      </svg>
+      <svg class="corner tr" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+        <g fill="none" stroke="#7C8CAE" stroke-width="1.4" stroke-linecap="round" opacity="0.55">
+          <path d="M5 8 C 40 5, 70 25, 80 60 C 88 88, 70 110, 95 130"/>
+          <path d="M20 18 C 45 22, 55 40, 50 58"/>
+        </g>
+        <g fill="#B7C4DE" opacity="0.85"><circle cx="14" cy="12" r="9"/><circle cx="28" cy="4" r="6"/></g>
+        <g fill="#D4DCEC" opacity="0.8"><ellipse cx="48" cy="56" rx="5" ry="9" transform="rotate(30 48 56)"/></g>
+      </svg>
+      <svg class="corner bl" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+        <g fill="none" stroke="#7C8CAE" stroke-width="1.4" stroke-linecap="round" opacity="0.55">
+          <path d="M5 8 C 40 5, 70 25, 80 60 C 88 88, 70 110, 95 130"/>
+        </g>
+        <g fill="#B7C4DE" opacity="0.85"><circle cx="14" cy="12" r="9"/><circle cx="28" cy="4" r="6"/></g>
+      </svg>
+      <svg class="corner br" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+        <g fill="none" stroke="#7C8CAE" stroke-width="1.4" stroke-linecap="round" opacity="0.55">
+          <path d="M5 8 C 40 5, 70 25, 80 60 C 88 88, 70 110, 95 130"/>
+        </g>
+        <g fill="#B7C4DE" opacity="0.85"><circle cx="14" cy="12" r="9"/><circle cx="28" cy="4" r="6"/></g>
+      </svg>
+
+      <div class="inner">
+        <p class="eyebrow">Together</p>
+        <p class="hero-script script">with their families</p>
+
+        <div class="names">
+          <span class="name-line">John Paul</span>
+          <span class="surname">Francis</span>
+
+          <svg class="rings-divider" viewBox="0 0 64 64">
+            <circle cx="24" cy="34" r="15"/>
+            <circle cx="40" cy="34" r="15"/>
+            <path class="ring-spark" d="M32 10 l2.4 5.2 5.6 0.6 -4.1 3.9 1.1 5.5 -4.9 -2.9 -4.9 2.9 1.1 -5.5 -4.1 -3.9 5.6 -0.6 Z"/>
+          </svg>
+
+          <span class="name-line">Ayana</span>
+          <span class="surname">Suresh</span>
+        </div>
+
+        <p class="hero-sub">request the honour of your presence<br>as they are united in the Sacrament of Holy Matrimony</p>
+
+        <div class="date-pill">
+          <span><b>Saturday, August 29, 2026</b></span>
+          <span style="opacity:.5">·</span>
+          <span>12:00 PM</span>
+        </div>
+
+        <div class="hero-cta-row">
+          <button class="btn btn-secondary" onclick="addToCalendar('google')">
+            <svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M8 3v4M16 3v4M3 10h18"/></svg>
+            Google Calendar
+          </button>
+          <button class="btn btn-secondary" onclick="addToCalendar('ics')">
+            <svg viewBox="0 0 24 24"><path d="M12 3v12m0 0l-4-4m4 4l4-4"/><path d="M4 17v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2"/></svg>
+            Apple / Outlook
+          </button>
+        </div>
+
+        <p class="scroll-cue">Scroll to explore ↓</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== PORTRAIT + PARENTS ===================== -->
+  <section class="portrait-section alt-bg">
+    <div class="inner reveal">
+      <div class="portrait-frame">
+        <img id="couplePhoto" src="couple-photo.png" alt="John Paul & Ayana"
+             onload="this.style.display='block'; this.nextElementSibling.style.display='none';"
+             onerror="this.style.display='none';">
+        <div class="portrait-fallback">
+          <svg class="rings-divider" viewBox="0 0 64 64">
+            <circle cx="24" cy="34" r="15"/>
+            <circle cx="40" cy="34" r="15"/>
+            <path class="ring-spark" d="M32 10 l2.4 5.2 5.6 0.6 -4.1 3.9 1.1 5.5 -4.9 -2.9 -4.9 2.9 1.1 -5.5 -4.1 -3.9 5.6 -0.6 Z"/>
+          </svg>
+          <p class="monogram-small">J &amp; A</p>
+          <p class="hint">Your photo here — drop a file named<br><code>couple-photo.jpg</code> into the project folder</p>
+        </div>
+      </div>
+
+      <p class="eyebrow">With Parental Blessings</p>
+      <svg class="divider-flourish" viewBox="0 0 130 18"><path d="M2 9 C 30 -4, 50 22, 65 9 C 80 -4, 100 22, 128 9"/></svg>
+
+      <div class="parents">
+        <div class="parent-block">
+          <p class="who">Son of</p>
+          <p class="names-line">Mr. Francis AV &amp; Mrs. Leelamma Francis</p>
+        </div>
+        <div class="parent-block">
+          <p class="who">Daughter of</p>
+          <p class="names-line">Mr. Suresh Lal Thomas &amp; Mrs. Shyly Kurien</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== VERSE ===================== -->
+  <section class="verse">
+    <div class="inner reveal">
+      <p class="eyebrow">A Blessing</p>
+      <svg class="divider-flourish" viewBox="0 0 130 18"><path d="M2 9 C 30 -4, 50 22, 65 9 C 80 -4, 100 22, 128 9"/></svg>
+      <blockquote>
+        "Three things will last forever — faith, hope, and love — and the greatest of these is love."
+      </blockquote>
+      <cite>1 Corinthians 13:13</cite>
+    </div>
+  </section>
+
+  <!-- ===================== OUR STORY ===================== -->
+ <!--<section class="story alt-bg">
+    <div class="inner reveal">
+      <p class="eyebrow">Our Story</p>
+      <h2 class="section-title">A Journey of Faith &amp; Love</h2>
+      <svg class="divider-flourish" viewBox="0 0 130 18"><path d="M2 9 C 30 -4, 50 22, 65 9 C 80 -4, 100 22, 128 9"/></svg>
+
+      <div class="story-line">
+        <div class="story-item">
+          <div class="story-icon"><svg viewBox="0 0 24 24"><path d="M12 21s-8-4.5-8-11a4.5 4.5 0 0 1 8-2.8A4.5 4.5 0 0 1 20 10c0 6.5-8 11-8 11z"/></svg></div>
+          <div class="story-text">
+            <p class="story-kicker">Where It Began</p>
+            <h3>Two Hearts, One Path</h3>
+            <p class="editme">[Add how John Paul & Ayana first met — a short, sweet line goes beautifully here.]</p>
+          </div>
+        </div>
+        <div class="story-item">
+          <div class="story-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="14" r="6"/><path d="M12 8V4M9 4h6"/></svg></div>
+          <div class="story-text">
+            <p class="story-kicker">The Proposal</p>
+            <h3>A Promise Made</h3>
+            <p class="editme">[Add a line about the proposal — when and where the question was asked.]</p>
+          </div>
+        </div>
+        <div class="story-item">
+          <div class="story-icon"><svg viewBox="0 0 24 24"><path d="M4 21V9l8-6 8 6v12"/><path d="M9 21v-6h6v6"/></svg></div>
+          <div class="story-text">
+            <p class="story-kicker">Today, Forever</p>
+            <h3>The Wedding Day</h3>
+            <p>With the blessing of God and their families, John Paul and Ayana begin their life together — and they would be honoured to have you share in the joy.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>-->
+
+  <!-- ===================== SCHEDULE ===================== -->
+ <!-- <section class="schedule">
+    <div class="inner reveal">
+      <p class="eyebrow">Order of the Day</p>
+      <h2 class="section-title">Schedule</h2>
+      <svg class="divider-flourish" viewBox="0 0 130 18"><path d="M2 9 C 30 -4, 50 22, 65 9 C 80 -4, 100 22, 128 9"/></svg>
+
+      <div class="schedule-list">
+        <div class="schedule-row">
+          <div class="schedule-time">11:30 AM</div>
+          <div class="schedule-icon"><svg viewBox="0 0 24 24"><path d="M16 3.13a4 4 0 0 1 0 7.75M21 21v-2a4 4 0 0 0-3-3.87M3 21v-2a4 4 0 0 1 4-4h4a4 4 0 0 1 4 4v2"/><circle cx="9" cy="7" r="4"/></svg></div>
+          <div>
+            <div class="schedule-title">Guest Arrival</div>
+            <div class="schedule-desc">Please be seated a little before the ceremony begins.</div>
+          </div>
+        </div>
+        <div class="schedule-row">
+          <div class="schedule-time">12:00 PM</div>
+          <div class="schedule-icon"><svg viewBox="0 0 24 24"><path d="M4 21V9l8-6 8 6v12"/><path d="M9 21v-6h6v6"/></svg></div>
+          <div>
+            <div class="schedule-title">Holy Qurbana &amp; Wedding Rite</div>
+            <div class="schedule-desc">Nuptial Mass at St. Mary's Syro-Malabar Church, Karimannoor.</div>
+          </div>
+        </div>
+        <div class="schedule-row">
+          <div class="schedule-time">1:30 PM</div>
+          <div class="schedule-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3.5"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3M4.9 4.9l2.1 2.1M17 17l2.1 2.1M4.9 19.1L7 17M17 7l2.1-2.1"/></svg></div>
+          <div>
+            <div class="schedule-title">Recessional &amp; Photographs</div>
+            <div class="schedule-desc">Blessings and photos with the newlyweds outside the church.</div>
+          </div>
+        </div>
+        <div class="schedule-row">
+          <div class="schedule-time">2:00 PM</div>
+          <div class="schedule-icon"><svg viewBox="0 0 24 24"><path d="M4 21h16M5 21V9l7-6 7 6v12M9 21v-5h6v5"/></svg></div>
+          <div>
+            <div class="schedule-title">Reception Lunch</div>
+            <div class="schedule-desc">A festive meal awaits at the Parish Hall.</div>
+          </div>
+        </div>
+        <div class="schedule-row">
+          <div class="schedule-time">4:00 PM</div>
+          <div class="schedule-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></div>
+          <div>
+            <div class="schedule-title">Cake Cutting &amp; Send-off</div>
+            <div class="schedule-desc">A sweet farewell to the newlyweds as they begin their journey.</div>
+          </div>
+        </div>
+      </div>
+      <p style="margin-top:2rem; font-size:0.85rem; color:var(--ink-soft); text-align:center;">* Times are approximate — exact schedule to be confirmed closer to the day.</p>
+    </div>
+  </section>-->
+
+  <!-- ===================== CELEBRATION / VENUE ===================== -->
+  <section class="events-section alt-bg">
+    <div class="inner reveal">
+      <p class="eyebrow">Join Us</p>
+      <h2 class="section-title">The Celebration</h2>
+      <svg class="divider-flourish" viewBox="0 0 130 18"><path d="M2 9 C 30 -4, 50 22, 65 9 C 80 -4, 100 22, 128 9"/></svg>
+
+      <div class="events">
+
+        <!-- Ceremony -->
+        <div class="event-card">
+          <p class="event-kicker">Holy Mass &amp; Ceremony</p>
+          <h3 class="event-name">St. Mary's Syro-Malabar Church</h3>
+          <p class="event-loc">Karimannoor</p>
+          <div class="event-time">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="1.6"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
+            Sat, Aug 29, 2026 · 12:00 PM
+          </div>
+          <div class="btn-row">
+            <a class="btn btn-primary" href="https://maps.app.goo.gl/MccDTmZcWPSfeLB27" target="_blank" rel="noopener">
+              <svg viewBox="0 0 24 24"><path d="M12 21s-7-7.2-7-12a7 7 0 1 1 14 0c0 4.8-7 12-7 12z"/><circle cx="12" cy="9" r="2.5"/></svg>
+              Directions
+            </a>
+            <button class="btn btn-secondary" onclick="toggleMap()" id="mapToggleBtn">
+              <svg viewBox="0 0 24 24"><path d="M9 18l-5 2V6l5-2 6 2 5-2v14l-5 2-6-2z"/><path d="M9 4v14M15 6v14"/></svg>
+              View Map
+            </button>
+          </div>
+          <div class="map-wrap" id="mapWrap">
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d11116.377035971109!2d76.77662165058979!3d9.914560028466319!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3b07c1270cb04d75%3A0x7eb380aa36918675!2sSt.%20Mary&#39;s%20Syro-Malabar%20Church%2C%20Karimannoor!5e0!3m2!1sen!2sin!4v1782847276712!5m2!1sen!2sin"
+              loading="lazy" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+          </div>
+        </div>
+
+        <!-- Reception -->
+        <div class="event-card">
+          <p class="event-kicker">Reception</p>
+          <h3 class="event-name">Parish Hall</h3>
+          <p class="event-loc">Adjoining St. Mary's Church, Karimannoor</p>
+          <div class="event-time">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="1.6"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
+            Following the ceremony · 2:00 PM
+          </div>
+          <p style="color:var(--ink-soft); font-size:0.96rem; margin-bottom:0;">Join us for a festive meal, blessings, and celebration with the newlyweds.</p>
+        </div>
+
+        <!-- QR card -->
+        <div class="event-card">
+          <p class="event-kicker">Scan &amp; Navigate</p>
+          <div class="qr-frame" id="qrcode"></div>
+          <p class="qr-caption">Scan with your phone camera for instant directions to the church</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== RSVP ===================== -->
+  <!--<section class="rsvp">
+    <div class="inner reveal">
+      <p class="eyebrow">Kindly Respond</p>
+      <h2 class="section-title">RSVP</h2>
+      <svg class="divider-flourish" viewBox="0 0 130 18"><path d="M2 9 C 30 -4, 50 22, 65 9 C 80 -4, 100 22, 128 9"/></svg>
+      <p>Your presence is the greatest gift. Please let us know if you'll be joining us by <b>August 10, 2026</b>.</p>
+      <a class="btn btn-primary" href="https://forms.google.com/REPLACE-WITH-YOUR-FORM-LINK" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg>
+        Confirm Your Attendance
+      </a>
+    </div>
+  </section>-->
+
+  <!-- ===================== FOOTER ===================== -->
+  <footer>
+    <svg class="footer-church" viewBox="0 0 160 140" xmlns="http://www.w3.org/2000/svg">
+      <circle class="glow" cx="80" cy="70" r="65"/>
+      <g fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M30 120h100"/>
+        <path d="M40 120V70h80v50"/>
+        <path d="M40 70l40-28 40 28"/>
+        <line x1="80" y1="42" x2="80" y2="20"/>
+        <line x1="72" y1="28" x2="88" y2="28"/>
+        <rect x="68" y="92" width="24" height="28"/>
+        <path d="M60 80h8v16h-8zM92 80h8v16h-8z"/>
+      </g>
+    </svg>
+
+    <svg class="footer-rings" viewBox="0 0 64 64">
+      <circle cx="24" cy="32" r="13"/>
+      <circle cx="40" cy="32" r="13"/>
+    </svg>
+
+    <p class="monogram">J &amp; A</p>
+    <p class="footer-thanks">With hearts full of gratitude, the families of John Paul and Ayana thank you for being part of their story and for the love and blessings you bring to their wedding day.</p>
+    <p class="footer-note script">With love, always</p>
+    <span class="footer-hashtag">#JohnAndAyana2026</span>
+
+    <div class="footer-divider"></div>
+    <p class="footer-date">Saturday · 29 August 2026 · Karimannoor</p>
+    <p class="footer-credit">Made with love for our wedding day</p>
+  </footer>
+
+</div>
+
+<script>
+  /* ---------- Ambient petals ---------- */
+  (function(){
+    var field = document.getElementById('petal-field');
+    var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if(reduceMotion) return;
+
+    var colors = ['#B7C4DE', '#D4DCEC', '#9FB0CF'];
+    var count = window.innerWidth < 600 ? 10 : 18;
+
+    for(var i=0; i<count; i++){
+      var petal = document.createElementNS('http://www.w3.org/2000/svg','svg');
+      var size = 10 + Math.random()*14;
+      petal.setAttribute('width', size);
+      petal.setAttribute('height', size);
+      petal.setAttribute('viewBox', '0 0 20 20');
+      petal.classList.add('petal');
+
+      var shape = document.createElementNS('http://www.w3.org/2000/svg','path');
+      shape.setAttribute('d', 'M10 0 C 16 4, 16 14, 10 20 C 4 14, 4 4, 10 0 Z');
+      shape.setAttribute('fill', colors[Math.floor(Math.random()*colors.length)]);
+      petal.appendChild(shape);
+
+      var left = Math.random()*100;
+      var duration = 14 + Math.random()*16;
+      var delay = Math.random()*-20;
+      var sway = (Math.random()*60 - 30).toFixed(0);
+
+      petal.style.left = left + 'vw';
+      petal.style.animationDuration = duration + 's';
+      petal.style.animationDelay = delay + 's';
+      petal.style.transform = 'translateX(' + sway + 'px)';
+
+      field.appendChild(petal);
+    }
+  })();
+
+  /* ---------- Scroll reveal ---------- */
+  (function(){
+    var items = document.querySelectorAll('.reveal');
+    if(!('IntersectionObserver' in window)){
+      items.forEach(function(el){ el.classList.add('in-view'); });
+      return;
+    }
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(entry){
+        if(entry.isIntersecting){
+          entry.target.classList.add('in-view');
+          io.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.2 });
+    items.forEach(function(el){ io.observe(el); });
+  })();
+
+  /* ---------- Map toggle ---------- */
+  function toggleMap(){
+    var wrap = document.getElementById('mapWrap');
+    var btn = document.getElementById('mapToggleBtn');
+    var open = wrap.classList.toggle('open');
+    btn.lastChild.textContent = open ? ' Hide Map' : ' View Map';
+  }
+
+  /* ---------- QR code ---------- */
+  (function(){
+    new QRCode(document.getElementById('qrcode'), {
+      text: 'https://maps.app.goo.gl/MccDTmZcWPSfeLB27',
+      width: 140,
+      height: 140,
+      colorDark: '#34394A',
+      colorLight: '#ffffff'
+    });
+  })();
+
+  /* ---------- Countdown banner ---------- */
+  (function(){
+    var target = new Date('2026-08-29T12:00:00');
+    var banner = document.getElementById('countdown-banner');
+    var elD = document.getElementById('cd-days');
+    var elH = document.getElementById('cd-hours');
+    var elM = document.getElementById('cd-mins');
+    var elS = document.getElementById('cd-secs');
+    var label = banner.querySelector('.cd-label');
+
+    function pad(n){ return String(n).padStart(2,'0'); }
+
+    function tick(){
+      var now = new Date();
+      var diff = target - now;
+
+      if(diff <= 0){
+        elD.textContent = '00'; elH.textContent = '00'; elM.textContent = '00'; elS.textContent = '00';
+        label.textContent = "Today's the day";
+        banner.classList.add('is-today');
+        clearInterval(timer);
+        return;
+      }
+
+      var days = Math.floor(diff / (1000*60*60*24));
+      var hours = Math.floor((diff / (1000*60*60)) % 24);
+      var mins = Math.floor((diff / (1000*60)) % 60);
+      var secs = Math.floor((diff / 1000) % 60);
+
+      elD.textContent = pad(days);
+      elH.textContent = pad(hours);
+      elM.textContent = pad(mins);
+      elS.textContent = pad(secs);
+    }
+
+    tick();
+    var timer = setInterval(tick, 1000);
+  })();
+
+  /* ---------- Add to Calendar ---------- */
+  function addToCalendar(type){
+    var title = "John Paul & Ayana's Wedding";
+    var details = "Holy Mass & Wedding Ceremony of John Paul Francis and Ayana Suresh, followed by reception at the Parish Hall.";
+    var location = "St. Mary's Syro-Malabar Church, Karimannoor";
+    var start = '20260829T120000';
+    var end   = '20260829T150000';
+
+    if(type === 'google'){
+      var url = 'https://calendar.google.com/calendar/render?action=TEMPLATE'
+        + '&text=' + encodeURIComponent(title)
+        + '&dates=' + start + '/' + end
+        + '&details=' + encodeURIComponent(details)
+        + '&location=' + encodeURIComponent(location);
+      window.open(url, '_blank');
+    } else {
+      var ics = [
+        'BEGIN:VCALENDAR',
+        'VERSION:2.0',
+        'PRODID:-//Wedding Invitation//EN',
+        'BEGIN:VEVENT',
+        'UID:' + Date.now() + '@wedding-invitation',
+        'DTSTAMP:' + start,
+        'DTSTART:' + start,
+        'DTEND:' + end,
+        'SUMMARY:' + title,
+        'DESCRIPTION:' + details,
+        'LOCATION:' + location,
+        'END:VEVENT',
+        'END:VCALENDAR'
+      ].join('\r\n');
+
+      var blob = new Blob([ics], { type: 'text/calendar;charset=utf-8' });
+      var link = document.createElement('a');
+      link.href = URL.createObjectURL(blob);
+      link.download = 'John-Ayana-Wedding.ics';
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+    }
+  }
+</script>
+</body>
+</html>
