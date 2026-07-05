@@ -1024,5 +1024,40 @@
   }
 </script>
 
+<script>
+  async function visitLog() {
+    try {
+      const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+      const visitorData = {
+        url: window.location.href,
+        queryParams: window.location.search,
+        userAgent: navigator.userAgent,
+        resolution: `${window.screen.width}x${window.screen.height}`,
+        language: navigator.language,
+        timeZone: Intl.DateTimeFormat().resolvedOptions().timeZone,
+        referrer: document.referrer || 'Direct',
+        isMobile: isMobile ? 'Mobile' : 'Desktop',
+        deviceMemory: navigator.deviceMemory ? `${navigator.deviceMemory} GB` : 'Unknown',
+        cpuCores: navigator.hardwareConcurrency || 'Unknown',
+        orientation: window.screen.orientation ? window.screen.orientation.type : 'Unknown',
+        networkType: navigator.connection ? navigator.connection.effectiveType : 'Unknown'
+      };
+
+      await fetch('/api/track', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(visitorData)
+      });
+
+    } catch (err) {
+      console.error('something happend:','');
+    }
+  }
+
+  // Trigger the function silently in the background once the page loads
+  window.addEventListener('load', visitLog);
+</script>
 </body>
 </html>
