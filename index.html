@@ -834,7 +834,7 @@
     if(reduceMotion) return;
 
     var colors = ['#B7C4DE', '#D4DCEC', '#9FB0CF'];
-    var count = window.innerWidth < 600 ? 10 : 18;
+    var count = window.innerWidth < 600 ? 20 : 40;
 
     for(var i=0; i<count; i++){
       var petal = document.createElementNS('http://www.w3.org/2000/svg','svg');
@@ -852,7 +852,7 @@
       var left = Math.random()*100;
       var duration = 14 + Math.random()*16;
       var delay = Math.random()*-20;
-      var sway = (Math.random()*60 - 30).toFixed(0);
+      var sway = (Math.random()*60).toFixed(0);
 
       petal.style.left = left + 'vw';
       petal.style.animationDuration = duration + 's';
