@@ -1,0 +1,27 @@
+{
+  "name": "marriage-invitation",
+  "version": "1.0.0",
+  "description": "John Paul & Ayana Wedding Invitation Website",
+  "main": "index.html",
+  "scripts": {
+    "test": "echo \"No tests configured\" && exit 0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/johnpaulfrancis/marriage.git"
+  },
+  "keywords": [
+    "wedding",
+    "invitation",
+    "vercel"
+  ],
+  "author": "John Paul Francis",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/johnpaulfrancis/marriage/issues"
+  },
+  "homepage": "https://github.com/johnpaulfrancis/marriage#readme",
+  "dependencies": {
+    "@vercel/analytics": "^2.0.1"
+  }
+}
